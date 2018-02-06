@@ -1,0 +1,48 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+	 maven { url "http://repo.spring.io/libs-milestone" }
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+
+jar {
+    baseName = 'spring-boot-example'
+    version =  '1.0'
+}
+group = 'mx.com'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	 maven { url "http://repo.spring.io/libs-milestone" }
+}
+
+configurations {
+    providedRuntime
+}
+
+
+dependencies {
+
+compile('org.springframework.boot:spring-boot-devtools')
+	compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework:spring-context-support')
+    compile('org.springframework:spring-tx')
+    compile('org.quartz-scheduler:quartz:2.2.1')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
+    
+}
